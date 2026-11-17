@@ -89,6 +89,8 @@
        FOREIGN KEY (prod_id) REFERENCES Products(prod_id)
    );
    ```
+   <img width="991" height="577" alt="image" src="https://github.com/user-attachments/assets/37c35059-4c95-4524-83b1-3a6fc1802a96" />
+
 3. **Выполните SQL-скрипт** в базе данных:
    ```bash
    docker exec -i lab4_db psql -U postgres -c "\i /dev/stdin" < schema.sql
@@ -96,6 +98,8 @@
    *(Альтернативный вариант: зайти в консоль psql через `docker exec -it lab4_db psql -U postgres` и выполнить команды вручную).*
 
 4. **Добавьте тестовые данные** (создайте файл `data.sql` и выполните его, чтобы база не была пустой).
+
+<img width="1000" height="1036" alt="image" src="https://github.com/user-attachments/assets/56a80d9c-297f-4b7f-b688-5134616a409f" />
 
 <img width="916" height="228" alt="image" src="https://github.com/user-attachments/assets/21fc9c8e-23ee-4a99-99ea-cfc696f446fd" />
 
