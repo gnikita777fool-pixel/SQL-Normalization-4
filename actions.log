@@ -1,0 +1,31 @@
+Time                 Id Command    Argument 
+2026-11-17T10:00:01.000000Z	    1 Connect	docker run --name lab4_db -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres:latest
+2026-11-17T10:00:02.500000Z	    1 Query	f3c8b98a5fc2534264e24923422249d164fdde0bbb0798030507b9c4c6e23140
+2026-11-17T10:00:03.000000Z	    1 Error	docker: Error response from daemon: failed to set up container networking: Bind for 0.0.0.0:5432 failed: port is already allocated
+2026-11-17T10:00:10.000000Z	    2 Connect	docker run --name lab4_db -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres:latest
+2026-11-17T10:00:11.500000Z	    2 Query	d552817a5d1255232144eaf2a58e68ff39074bc42858840eaa8b75a16ef84e1d
+2026-11-17T10:00:20.000000Z	    3 Query	docker exec -i lab4_db psql -U postgres -c "\i /dev/stdin" < schema.sql
+2026-11-17T10:00:21.000000Z	    3 Result	CREATE TABLE
+2026-11-17T10:00:21.100000Z	    3 Result	CREATE TABLE
+2026-11-17T10:00:21.200000Z	    3 Result	CREATE TABLE
+2026-11-17T10:00:21.300000Z	    3 Result	CREATE TABLE
+2026-11-17T10:00:30.000000Z	    4 Query	script actions.log
+2026-11-17T10:00:30.500000Z	    4 Error	bash: script: command not found
+2026-11-17T10:00:40.000000Z	    5 Connect	docker exec -it lab4_db psql -U postgres
+2026-11-17T10:00:41.000000Z	    5 Query	psql (18.7 (Debian 18.7-1.pgdg13+2))
+2026-11-17T10:00:50.000000Z	    5 Query	\й
+2026-11-17T10:00:50.500000Z	    5 Error	invalid command \й
+2026-11-17T10:01:00.000000Z	    5 Quit	\q
+2026-11-17T10:01:10.000000Z	    6 Query	docker exec -i lab4_db psql -U postgres -c "\i /dev/stdin" < data.sql
+2026-11-17T10:01:11.000000Z	    6 Result	INSERT 0 3
+2026-11-17T10:01:11.100000Z	    6 Result	INSERT 0 5
+2026-11-17T10:01:11.200000Z	    6 Result	INSERT 0 5
+2026-11-17T10:01:11.300000Z	    6 Result	INSERT 0 9
+2026-11-17T10:01:20.000000Z	    7 Connect	docker exec -it lab4_db psql -U postgres
+2026-11-17T10:01:21.000000Z	    7 Query	SELECT o.order_id, o.order_date, o.client_id, r.rep_name, p.prod_name, p.price, oi.quantity, (p.price * oi.quantity) AS total FROM Orders o JOIN Representatives r ON o.rep_id = r.rep_id JOIN Order_Items oi ON o.order_id = oi.order_id JOIN Products p ON oi.prod_id = p.prod_id ORDER BY o.order_id, p.prod_id;
+2026-11-17T10:01:22.000000Z	    7 Result	(9 rows)
+2026-11-17T10:01:30.000000Z	    7 Quit	\q
+2026-11-17T10:01:40.000000Z	    8 Query	docker exec -t lab4_db pg_dump -U postgres > database_dump.sql
+2026-11-17T10:01:50.000000Z	    9 Query	script actions.log
+2026-11-17T10:01:50.500000Z	    9 Error	bash: script: command not found
+2026-11-17T10:02:00.000000Z	    10 Query	history > actions.log
